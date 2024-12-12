@@ -67,7 +67,7 @@ button {
 #frequency-difference {
     font-size: 20px;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 0px;
 }
 
@@ -84,6 +84,7 @@ h1 {
 
 small {
     font-size: 1.3rem;
+    margin-bottom: 0px;
 }
 
 .logo {
