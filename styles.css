@@ -79,12 +79,13 @@ h1 {
 }
 
 .brain {
-    height: 10vh;
+    height: 7vh;
 }
 
 small {
     font-size: 1.3rem;
     margin-bottom: 0px;
+    margin-top: -7px;
 }
 
 .logo {
