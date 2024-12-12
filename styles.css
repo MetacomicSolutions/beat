@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #00d9b2;
+    background: #1e1e1e;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.container {
+    margin-bottom: 30px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+input {
+    margin: 10px;
+    font-size: 18px;
+    width: 120px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 20px;
+}
+
+#info {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#frequency-difference-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+}
+
+#frequency-difference {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+h1 {
+    color: white;
+    font-size: 6vw;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.brain {
+    height: 5vh;
+}
+
+small {
+    font-size: 1.3rem;
+}
+
+.logo {
+    height: 7vh; 
+    margin-top: 4vh;
+}
+
+/* Colors */
+.error {
+    color: #b05353;
+}

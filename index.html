@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binaural Beat Generator</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+
+    <div class="logo">
+        <a href="binuralbeats.html"><img class="brain" src="brain.png" alt="Brain Logo"></a>
+    </div>
+    <h1>Binaural Beat Generator</h1>
+    <small style="color: rgb(48, 48, 48); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-top: -10px;">BinauralBeatGenerator.com</small>
+
+    <!-- Frequency Difference Display -->
+    <div id="frequency-difference-container">
+        <p style="color: white; font-size: 5rem;" id="frequency-difference">0 Hz</p>
+    </div>
+
+    <!-- Flex container for side-by-side input fields -->
+    <div class="flex-container">
+        <div class="input-group">
+            <label for="left-frequency">Left Ear Frequency (Hz): </label>
+            <input type="number" id="left-frequency" value="532" min="20" max="2000">
+        </div>
+        <div class="input-group">
+            <label for="right-frequency">Right Ear Frequency (Hz): </label>
+            <input type="number" id="right-frequency" value="528" min="20" max="2000">
+        </div>
+    </div>
+
+    <!-- File upload input -->
+    <div class="input-group">
+        <label class="error" for="audio-file">Loop Audio File:</label>
+        <input style="width: 40vw; color: white;" type="file" id="audio-file" accept="audio/*">
+    </div>
+
+    <!-- Control Buttons -->
+    <div class="container">
+        <button id="play-button" onclick="playBinauralBeats()">Play</button>
+        <button id="stop-button" onclick="stopBinauralBeats()" style="display:none;">Stop</button>
+    </div>
+
+    <!-- Information -->
+    <p style="color: black;" id="info"></p>
+    <a style="text-decoration: none; color: #00d9b2;" href="binuralbeats.html"><p>Instructions</p></a>
+    <script src="script.js"></script> <!-- Link to the JS file -->
+</body>
+</html>
