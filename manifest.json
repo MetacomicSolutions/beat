@@ -2,7 +2,7 @@
     "name": "Binaural Beat Generator",
     "short_name": "Binaural Beats",
     "description": "Binaural Beat Generator",
-    "start_url": "/",
+    "start_url": "https://metacomicsolutions.github.io/beat",
     "background_color": "#1e1e1e",
     "theme_color": "#1e1e1e",
     "display": "standalone",
