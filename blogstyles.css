@@ -23,9 +23,11 @@ header {
 a {
     color: #404040;
     text-decoration: none;
+    margin-bottom: 0px;
 }
 .logo img {
     height: 5vh;
+    margin-bottom: 0vh;
 }
 .skip-link {
     background-color: #00d9b2;
@@ -45,7 +47,7 @@ a {
     width: 80%;
     max-width: 900px;
     margin-top: 0vh;
-    max-height: 80vh;
+    max-height: 70vh;
     overflow-y: auto;
 }
 
