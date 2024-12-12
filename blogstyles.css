@@ -16,8 +16,9 @@ header {
     font-size: 1rem;
     margin: 10px 0;
     margin-top: 4vh;
-    color: #00d9b2;
+    color: #ffffff;
     text-transform: uppercase;
+    margin-bottom: 0vh;
 }
 a {
     color: #404040;
@@ -43,7 +44,7 @@ a {
     border-radius: 15px;
     width: 80%;
     max-width: 900px;
-    margin-top: 1vh;
+    margin-top: 0vh;
     max-height: 80vh;
     overflow-y: auto;
 }
@@ -91,3 +92,5 @@ footer {
     color: #888;
     text-align: center;
 }
+
+
