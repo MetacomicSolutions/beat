@@ -3,7 +3,7 @@
     "short_name": "BBG",
     "description": "Binaural Beat Generator",
     "start_url": "/index.html",
-    "background_color": "#ffffff",
+    "background_color": "#000000",
     "theme_color": "#000000",
     "display": "standalone",
     "icons": [
