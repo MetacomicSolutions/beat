@@ -3,8 +3,8 @@
     "short_name": "Binaural Beats",
     "description": "Binaural Beat Generator",
     "start_url": "/",
-    "background_color": "#000000",
-    "theme_color": "#000000",
+    "background_color": "#1e1e1e",
+    "theme_color": "#1e1e1e",
     "display": "standalone",
     "icons": [
       {
