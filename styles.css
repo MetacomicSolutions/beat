@@ -16,6 +16,8 @@ body {
 
 .container {
     margin-bottom: 30px;
+        margin-top: 0px;
+
 }
 
 .flex-container {
