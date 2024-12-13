@@ -535,7 +535,6 @@ document.addEventListener('DOMContentLoaded', formatFrequencyDisplay);
 
 
 // Vibrator
-
 document.addEventListener('DOMContentLoaded', function () {
     // Check if the device is mobile
     const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
@@ -577,8 +576,8 @@ document.addEventListener('DOMContentLoaded', function () {
         vibrateButton.addEventListener('click', function () {
             if (!isVibrating) {
                 if (navigator.vibrate) {
-                    // Start nonstop vibration (vibrate for 1 second, pause for 1 millisecond)
-                    navigator.vibrate([1000, 1]);
+                    // Start nonstop vibration with a pattern: vibrate for 1000ms (1 second) and pause for 100ms, repeating indefinitely
+                    navigator.vibrate([1000, 100]); // Vibrate for 1 second, pause for 100ms
                     isVibrating = true;
 
                     // Hide the start button and show the stop button
