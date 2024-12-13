@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (isMobile) {
         // Start vibration button
-        vibrateButton.textContent = 'Start Continuous Vibration';
+        vibrateButton.textContent = 'Start Regular Vibration';
         vibrateButton.style.padding = '10px 20px';
         vibrateButton.style.backgroundColor = '#000000';
         vibrateButton.style.color = 'white';
@@ -575,8 +575,8 @@ document.addEventListener('DOMContentLoaded', function () {
         vibrateButton.addEventListener('click', function () {
             if (!isVibrating) {
                 if (navigator.vibrate) {
-                    // Start rapid pulsing vibration (10ms on, 10ms off, repeat indefinitely)
-                    navigator.vibrate([10, 10]);  // Vibrate for 10ms, pause for 10ms
+                    // Start regular pulsing vibration (100ms on, 100ms off, repeat indefinitely)
+                    navigator.vibrate([100, 100]);  // Vibrate for 100ms, pause for 100ms
                     isVibrating = true;
 
                     // Hide the start button and show the stop button
