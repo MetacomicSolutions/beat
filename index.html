@@ -60,13 +60,17 @@
          </div>
             
 
-    <!-- Information -->
-    <p style="color: black;" id="info"></p>
+ 
     <a style="text-decoration: none; color: #00d9b2;" href="binuralbeats.html"><p>Guide</p></a>
     
 
 <!-- Mixer controls container -->
+ <!-- Image to trigger the div (now with id 'mixer-image') -->
+<img style="height: 5vh;" src="sound-controller.png" id="mixer-image" alt="Click to open volume controls" style="cursor: pointer;">
+
+
 <div class="mixer-container" style="display: none;">
+    <small>click again to close</small>
     <h1>Mixer</h1>
     <div class="volume-controls">
         <label>
@@ -93,10 +97,9 @@
     <div class="reset-button">
         <button id="reset-button">Reset to Default</button>
     </div>
+       <!-- Information -->
+       <p style="color: black;" id="info"></p>
 </div>
-
-<!-- Image to trigger the div (now with id 'mixer-image') -->
-<img style="height: 5vh;" src="sound-controller.png" id="mixer-image" alt="Click to open volume controls" style="cursor: pointer;">
 
 
     <script src="script.js"></script> <!-- Link to the JS file -->
