@@ -97,3 +97,32 @@ small {
 .error {
     color: #b05353;
 }
+
+
+
+.share-button-container {
+    text-align: center;
+    margin-bottom: 20px; /* Adjust the space between the button and "Guide" */
+}
+
+.share-button {
+    background-color: #00d9b2; /* Your preferred button color */
+    color: white;
+    background-image: url('share.png');
+    font-size: 1.5rem; /* Increased font size for better visibility */
+    width: 6vh; /* Set the width */
+    height: 6vh; /* Set the height equal to width */
+    border: none;
+    margin-top: 4vh;
+    border-radius: 50%; /* Makes the button perfectly circular */
+    align-items: center; /* Centers the content vertically */
+    justify-content: center; /* Centers the content horizontally */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.share-button:hover {
+    background-color: #00b18f; /* Darken on hover */
+}
+
