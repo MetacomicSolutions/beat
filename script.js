@@ -488,3 +488,44 @@ document.getElementById('reset-button').addEventListener('click', resetToDefault
             mixerContainer.style.display = "none";
         }
     });
+
+
+
+// Function to properly format and display frequencies in Hertz
+function formatFrequencyDisplay() {
+    const leftFrequencyInput = document.getElementById('left-frequency');
+    const rightFrequencyInput = document.getElementById('right-frequency');
+    const infoElement = document.getElementById('info');
+    const frequencyDifferenceElement = document.getElementById('frequency-difference');
+    
+    // Get the current frequency values
+    let leftFrequency = parseFloat(leftFrequencyInput.value);
+    let rightFrequency = parseFloat(rightFrequencyInput.value);
+    
+    // Ensure the frequencies are valid numbers
+    if (isNaN(leftFrequency) || isNaN(rightFrequency)) {
+        return;  // Exit if the frequencies are not valid
+    }
+
+    // Format the frequencies to display with one decimal place
+    leftFrequency = leftFrequency.toFixed(1);
+    rightFrequency = rightFrequency.toFixed(1);
+
+    // Update the display of frequencies in the UI
+    if (infoElement) {
+        infoElement.innerText = `Playing: Left - ${leftFrequency} Hz, Right - ${rightFrequency} Hz`;
+    }
+
+    // Calculate and display the frequency difference
+    const frequencyDifference = Math.abs(leftFrequency - rightFrequency);
+    if (frequencyDifferenceElement) {
+        frequencyDifferenceElement.innerText = `${frequencyDifference} Hz`;
+    }
+}
+
+// Add event listeners to update the frequency display whenever the user changes the frequency values
+document.getElementById('left-frequency').addEventListener('input', formatFrequencyDisplay);
+document.getElementById('right-frequency').addEventListener('input', formatFrequencyDisplay);
+
+// Initialize the frequency display on page load
+document.addEventListener('DOMContentLoaded', formatFrequencyDisplay);
