@@ -553,7 +553,6 @@ document.addEventListener('DOMContentLoaded', function () {
         vibrateButton.style.color = 'white';
         vibrateButton.style.border = 'none';
         vibrateButton.style.cursor = 'pointer';
-        stopButton.style.marginBottom = '20px';
         vibrateButton.style.borderRadius = '5px';
         vibrateButton.style.marginTop = '10px';
 
@@ -576,8 +575,8 @@ document.addEventListener('DOMContentLoaded', function () {
         vibrateButton.addEventListener('click', function () {
             if (!isVibrating) {
                 if (navigator.vibrate) {
-                    // Start nonstop vibration with a pattern: vibrate for 1000ms (1 second) and pause for 100ms, repeating indefinitely
-                    navigator.vibrate([1000, 100]); // Vibrate for 1 second, pause for 100ms
+                    // Start rapid pulsing vibration (10ms on, 10ms off, repeat indefinitely)
+                    navigator.vibrate([10, 10]);  // Vibrate for 10ms, pause for 10ms
                     isVibrating = true;
 
                     // Hide the start button and show the stop button
@@ -607,4 +606,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
