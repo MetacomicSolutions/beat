@@ -110,8 +110,8 @@ small {
     color: white;
     background-image: url('share.png');
     font-size: 1.5rem; /* Increased font size for better visibility */
-    width: 6vh; /* Set the width */
-    height: 6vh; /* Set the height equal to width */
+    width: 4vh; /* Set the width */
+    height: 4vh; /* Set the height equal to width */
     border: none;
     margin-top: 4vh;
     border-radius: 50%; /* Makes the button perfectly circular */
