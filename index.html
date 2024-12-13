@@ -34,8 +34,6 @@
         </div>
     </div>
 
-    <!-- File upload input -->
-
     <div class="input-group" style="text-align: center; margin: 20px 0;">
         <label for="audio-file" style="font-size: 18px; color: white; margin-bottom: 10px; display: block; font-weight: bold; text-transform: uppercase;">
             Loop Your MP3 ♻️:
@@ -48,19 +46,9 @@
         </button>
     </div>
     
-    <script>
-        // Update label text when file is selected
-        function updateLabel() {
-            const fileInput = document.getElementById('audio-file');
-            const label = document.querySelector('label[for="audio-file"]');
-            if (fileInput.files.length > 0) {
-                label.textContent = `File Selected: ${fileInput.files[0].name}`;
-            } else {
-                label.textContent = 'Loop Your MP3 ♻️:';
-            }
-        }
-    </script>
+
     
+
     <!-- Control Buttons -->
     <div class="container">
         <button id="play-button" onclick="playBinauralBeats()">Play</button>
@@ -76,10 +64,40 @@
     <p style="color: black;" id="info"></p>
     <a style="text-decoration: none; color: #00d9b2;" href="binuralbeats.html"><p>Guide</p></a>
     
-    <script>
-       
-    </script>
+
+<!-- Mixer controls container -->
+<div class="mixer-container" style="display: none;">
+    <h1>Mixer</h1>
+    <div class="volume-controls">
+        <label>
+            <input type="checkbox" id="link-volumes">
+            Match Left and Right Volumes
+        </label>
     
+        <div class="volume-slider">
+            <label for="left-volume">Left Volume:</label>
+            <input type="range" id="left-volume" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    
+        <div class="volume-slider">
+            <label for="right-volume">Right Volume:</label>
+            <input type="range" id="right-volume" min="0" max="1" step="0.01" value="0.5">
+        </div>
+    </div>
+    
+    <div class="loop-volume">
+        <label for="loop-volume">Looped Audio Volume:</label>
+        <input type="range" id="loop-volume" min="0" max="1" step="0.01" value="0.3">
+    </div>
+        
+    <div class="reset-button">
+        <button id="reset-button">Reset to Default</button>
+    </div>
+</div>
+
+<!-- Image to trigger the div (now with id 'mixer-image') -->
+<img style="height: 5vh;" src="sound-controller.png" id="mixer-image" alt="Click to open volume controls" style="cursor: pointer;">
+
 
     <script src="script.js"></script> <!-- Link to the JS file -->
 </body>
