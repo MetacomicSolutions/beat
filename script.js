@@ -6,50 +6,63 @@ let gainNodeRight;
 let loopedAudioSource;
 let isPlaying = false;
 
-// Initialize AudioContext if needed
-function getAudioContext() {
+// Play binaural beats
+function playBinauralBeats() {
+    if (isPlaying) {
+        return; // Avoid multiple instances
+    }
+
+    // Create an audio context if it doesn't exist
     if (!audioContext) {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
     }
-    return audioContext;
-}
 
-// Create and start oscillators for binaural beats
-function createBinauralOscillators(leftFrequency, rightFrequency) {
+    // Get frequencies from input fields
+    const leftFrequency = parseFloat(document.getElementById('left-frequency').value);
+    const rightFrequency = parseFloat(document.getElementById('right-frequency').value);
+
+    // Calculate frequency difference
+    const frequencyDifference = Math.abs(leftFrequency - rightFrequency);
+
+    // Create oscillators for left and right frequencies
     leftOscillator = audioContext.createOscillator();
     rightOscillator = audioContext.createOscillator();
 
-    leftOscillator.frequency.setValueAtTime(leftFrequency, audioContext.currentTime);
-    rightOscillator.frequency.setValueAtTime(rightFrequency, audioContext.currentTime);
-
-    leftOscillator.start();
-    rightOscillator.start();
-}
-
-// Create and configure panner and gain nodes
-function configureAudioNodes() {
+    // Create panner nodes for left and right channels
     const leftPanner = audioContext.createStereoPanner();
     const rightPanner = audioContext.createStereoPanner();
-    const gainNodeLeft = audioContext.createGain();
-    const gainNodeRight = audioContext.createGain();
 
+    // Set panning for left and right channels
     leftPanner.pan.setValueAtTime(-1, audioContext.currentTime); // Left ear
     rightPanner.pan.setValueAtTime(1, audioContext.currentTime); // Right ear
 
+    // Connect oscillators to panner nodes
     leftOscillator.connect(leftPanner);
     rightOscillator.connect(rightPanner);
+
+    // Create gain nodes for volume control
+    gainNodeLeft = audioContext.createGain();
+    gainNodeRight = audioContext.createGain();
+
+    // Set frequencies
+    leftOscillator.frequency.setValueAtTime(leftFrequency, audioContext.currentTime);
+    rightOscillator.frequency.setValueAtTime(rightFrequency, audioContext.currentTime);
+
+    // Connect panner nodes to gain nodes
     leftPanner.connect(gainNodeLeft);
     rightPanner.connect(gainNodeRight);
-
     gainNodeLeft.connect(audioContext.destination);
     gainNodeRight.connect(audioContext.destination);
 
+    // Set volume
     gainNodeLeft.gain.setValueAtTime(0.5, audioContext.currentTime);
     gainNodeRight.gain.setValueAtTime(0.5, audioContext.currentTime);
-}
 
-// Update UI after starting binaural beats
-function updateUIAfterPlay(leftFrequency, rightFrequency, frequencyDifference) {
+    // Start the oscillators
+    leftOscillator.start();
+    rightOscillator.start();
+
+    // Update UI and state
     isPlaying = true;
     document.getElementById('play-button').style.display = 'none';
     document.getElementById('stop-button').style.display = 'inline-block';
@@ -57,28 +70,17 @@ function updateUIAfterPlay(leftFrequency, rightFrequency, frequencyDifference) {
     document.getElementById('frequency-difference').innerText = `${frequencyDifference} Hz`;
 }
 
-// Play binaural beats
-function playBinauralBeats() {
-    if (isPlaying) return; // Avoid multiple instances
-
-    const audioContext = getAudioContext();
-
-    const leftFrequency = parseFloat(document.getElementById('left-frequency').value);
-    const rightFrequency = parseFloat(document.getElementById('right-frequency').value);
-    const frequencyDifference = Math.abs(leftFrequency - rightFrequency);
-
-    createBinauralOscillators(leftFrequency, rightFrequency);
-    configureAudioNodes();
-    updateUIAfterPlay(leftFrequency, rightFrequency, frequencyDifference);
-}
-
 // Stop binaural beats
 function stopBinauralBeats() {
-    if (!isPlaying) return;
+    if (!isPlaying) {
+        return;
+    }
 
-    leftOscillator.stop();
-    rightOscillator.stop();
+    // Stop oscillators
+    if (leftOscillator) leftOscillator.stop();
+    if (rightOscillator) rightOscillator.stop();
 
+    // Stop audio file if playing
     if (loopedAudioSource) {
         loopedAudioSource.stop();
     }
@@ -91,38 +93,36 @@ function stopBinauralBeats() {
     document.getElementById('frequency-difference').innerText = '0 Hz';
 }
 
-// Handle audio file upload and play it in a loop with size check
+// Handle audio file upload and play it in a loop
 document.getElementById('audio-file').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (!file) return;
-
-    // Check if the file size exceeds 7 MB (7 * 1024 * 1024 bytes)
-    const maxSize = 7 * 1024 * 1024; // 7 MB
-    if (file.size > maxSize) {
-        alert('File is too large. Please upload a file smaller than 7 MB.');
-        return; // Abort the upload process
-    }
 
     const reader = new FileReader();
     reader.onload = function(e) {
         const arrayBuffer = e.target.result;
 
-        const audioContext = getAudioContext();
+        // Check if audioContext exists before decoding
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
 
         audioContext.decodeAudioData(arrayBuffer, function(buffer) {
-            if (loopedAudioSource) loopedAudioSource.stop(); // Stop previous audio if any
+            if (loopedAudioSource) {
+                loopedAudioSource.stop(); // Stop any previous audio
+            }
 
             loopedAudioSource = audioContext.createBufferSource();
             loopedAudioSource.buffer = buffer;
             loopedAudioSource.loop = true;
 
-            // Create and configure loop gain node
+            // Create a gain node for the looped audio
             const loopGainNode = audioContext.createGain();
             loopedAudioSource.connect(loopGainNode);
             loopGainNode.connect(audioContext.destination);
             loopGainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
 
-            // Create and configure stereo panner for looped audio
+            // Create a stereo panner for the looped audio
             const loopPanner = audioContext.createStereoPanner();
             loopPanner.pan.setValueAtTime(0, audioContext.currentTime); // Centered
             loopGainNode.connect(loopPanner);
