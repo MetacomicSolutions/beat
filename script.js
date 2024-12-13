@@ -148,3 +148,124 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
+// Share button functionality
+       document.addEventListener('DOMContentLoaded', function () {
+            const shareButton = document.querySelector('.share-button');
+    
+            // Check if the share button exists
+            if (shareButton) {
+                shareButton.addEventListener('click', function() {
+                    // Check if the Share API is supported
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Binaural Beat Generator',
+                            text: 'Check out this cool Binaural Beat Generator!',
+                            url: window.location.href
+                        }).then(() => {
+                            console.log('Shared successfully');
+                        }).catch((error) => {
+                            console.error('Error sharing:', error);
+                        });
+                    } else {
+                        // If Share API is not supported, show a copyable link and email option
+                        const shareLink = window.location.href;
+    
+                        // Create a simple container to display the link
+                        const copyModal = document.createElement('div');
+                        copyModal.style.position = 'fixed';
+                        copyModal.style.top = '0';
+                        copyModal.style.left = '0';
+                        copyModal.style.width = '100%';
+                        copyModal.style.height = '100%';
+                        copyModal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                        copyModal.style.display = 'flex';
+                        copyModal.style.alignItems = 'center';
+                        copyModal.style.justifyContent = 'center';
+                        copyModal.style.zIndex = '9999';
+    
+                        // Create a modal content box
+                        const modalContent = document.createElement('div');
+                        modalContent.style.backgroundColor = 'white';
+                        modalContent.style.padding = '20px';
+                        modalContent.style.textAlign = 'center';
+                        modalContent.style.borderRadius = '8px';
+                        modalContent.style.maxWidth = '90%';
+                        modalContent.style.boxSizing = 'border-box';
+    
+                        // Create the text area for the share link
+                        const linkTextArea = document.createElement('textarea');
+                        linkTextArea.value = shareLink; // Set the share link
+                        linkTextArea.style.width = '100%';
+                        linkTextArea.style.height = '50px';
+                        linkTextArea.style.fontSize = '14px';
+                        linkTextArea.style.marginBottom = '10px';
+                        linkTextArea.setAttribute('readonly', true);
+    
+                        // Create a button to copy the link
+                        const copyButton = document.createElement('button');
+                        copyButton.textContent = 'Copy Link';
+                        copyButton.style.padding = '10px 20px';
+                        copyButton.style.backgroundColor = '#00d9b2';
+                        copyButton.style.color = 'white';
+                        copyButton.style.border = 'none';
+                        copyButton.style.cursor = 'pointer';
+                        copyButton.style.borderRadius = '5px';
+    
+                        // Add click event to copy the link to clipboard
+                        copyButton.addEventListener('click', function() {
+                            linkTextArea.select();
+                            document.execCommand('copy'); // Copy the text
+                            alert('Link copied to clipboard!'); // Alert user
+                        });
+    
+                        // Create a button to send via email
+                        const emailButton = document.createElement('button');
+                        emailButton.textContent = 'Send via Email';
+                        emailButton.style.padding = '10px 20px';
+                        emailButton.style.backgroundColor = '#4CAF50';
+                        emailButton.style.color = 'white';
+                        emailButton.style.border = 'none';
+                        emailButton.style.cursor = 'pointer';
+                        emailButton.style.borderRadius = '5px';
+                        emailButton.style.marginTop = '10px';
+    
+                        // Add click event to open email client
+                        emailButton.addEventListener('click', function() {
+                            const emailSubject = 'Check out this Binaural Beat Generator';
+                            const emailBody = `I found this cool Binaural Beat Generator! You can check it out here: \n\n${shareLink}`;
+                            const mailtoLink = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                            window.location.href = mailtoLink; // Open email client with pre-filled info
+                        });
+    
+                        // Create a Cancel button to close the modal
+                        const cancelButton = document.createElement('button');
+                        cancelButton.textContent = 'Cancel';
+                        cancelButton.style.padding = '10px 20px';
+                        cancelButton.style.backgroundColor = '#f44336';
+                        cancelButton.style.color = 'white';
+                        cancelButton.style.border = 'none';
+                        cancelButton.style.cursor = 'pointer';
+                        cancelButton.style.borderRadius = '5px';
+                        cancelButton.style.marginTop = '10px';
+    
+                        // Add click event to close the modal
+                        cancelButton.addEventListener('click', function() {
+                            copyModal.remove(); // Remove modal from DOM
+                        });
+    
+                        // Append elements to the modal
+                        modalContent.appendChild(linkTextArea);
+                        modalContent.appendChild(copyButton);
+                        modalContent.appendChild(emailButton);
+                        modalContent.appendChild(cancelButton);
+                        copyModal.appendChild(modalContent);
+    
+                        // Append modal to the body
+                        document.body.appendChild(copyModal);
+                    }
+                });
+            } else {
+                console.error('Share button not found!');
+            }
+        });
