@@ -529,3 +529,83 @@ document.getElementById('right-frequency').addEventListener('input', formatFrequ
 
 // Initialize the frequency display on page load
 document.addEventListener('DOMContentLoaded', formatFrequencyDisplay);
+
+
+
+
+
+// Vibrator
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Check if the device is mobile
+    const isMobile = /Mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
+
+    const vibrateButtonContainer = document.getElementById('vibrate-button-container');
+    const vibrateButton = document.createElement('button');
+    const stopButton = document.createElement('button');
+
+    let isVibrating = false;  // Flag to track if vibration is ongoing
+
+    if (isMobile) {
+        // Start vibration button
+        vibrateButton.textContent = 'Start Continuous Vibration';
+        vibrateButton.style.padding = '10px 20px';
+        vibrateButton.style.backgroundColor = '#000000';
+        vibrateButton.style.color = 'white';
+        vibrateButton.style.border = 'none';
+        vibrateButton.style.cursor = 'pointer';
+        stopButton.style.marginBottom = '20px';
+        vibrateButton.style.borderRadius = '5px';
+        vibrateButton.style.marginTop = '10px';
+
+        // Stop vibration button (initially hidden)
+        stopButton.textContent = 'Stop Vibration';
+        stopButton.style.padding = '10px 20px';
+        stopButton.style.backgroundColor = '#f44336';
+        stopButton.style.color = 'white';
+        stopButton.style.border = 'none';
+        stopButton.style.cursor = 'pointer';
+        stopButton.style.borderRadius = '5px';
+        stopButton.style.marginTop = '10px';
+        stopButton.style.display = 'none';  // Hide stop button initially
+
+        // Append the buttons to the container
+        vibrateButtonContainer.appendChild(vibrateButton);
+        vibrateButtonContainer.appendChild(stopButton);
+
+        // Event listener for starting vibration
+        vibrateButton.addEventListener('click', function () {
+            if (!isVibrating) {
+                if (navigator.vibrate) {
+                    // Start nonstop vibration (vibrate for 1 second, pause for 1 millisecond)
+                    navigator.vibrate([1000, 1]);
+                    isVibrating = true;
+
+                    // Hide the start button and show the stop button
+                    vibrateButton.style.display = 'none';
+                    stopButton.style.display = 'inline-block';
+                } else {
+                    alert('Vibration not supported on this device.');
+                }
+            }
+        });
+
+        // Event listener for stopping vibration
+        stopButton.addEventListener('click', function () {
+            if (navigator.vibrate) {
+                navigator.vibrate(0);  // Stop the vibration
+                isVibrating = false;
+
+                // Hide the stop button and show the start button
+                stopButton.style.display = 'none';
+                vibrateButton.style.display = 'inline-block';
+            }
+        });
+    } else {
+        // If not on mobile, hide the vibrate button
+        if (vibrateButtonContainer) {
+            vibrateButtonContainer.style.display = 'none';
+        }
+    }
+});
+
