@@ -24,13 +24,14 @@
 <!-- Mixer controls container -->
  <!-- Image to trigger the div (now with id 'mixer-image') -->
 <img style="height: 5vh; margin-top: 0vh; margin-bottom: 1vh;" src="sound-controller.png" id="mixer-image" alt="Click to open volume controls" style="cursor: pointer;">
-
+<small style="margin-top: -2vh; color: rgb(20, 20, 20); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-bottom: 0; margin-top: -10px;">Mixer</small>
 
 <div class="mixer-container" style="display: none;">
-    <small>click again to close</small>
-    <h3>Mixer</h3>
+    <small style="font-size: 1rem; margin-top: -4vh; color: rgba(119, 38, 38, 0.479); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-top: -10px;">click again to close.</small>
     <div class="volume-controls">
+        <div style="color: white;">
             Match Left and Right Volumes
+        </div>
         <label>
             <input type="checkbox" id="link-volumes">
         </label>
@@ -89,7 +90,7 @@
         <button id="stop-button" onclick="stopBinauralBeats()" style="display:none;">Stop</button>
 
         <!-- Share Button -->
-        <div>
+        <div style="margin-top: -2vh;">
             <img class="share-button" src="share.png" alt="">
          </div>
             
