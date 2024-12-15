@@ -24,12 +24,13 @@
 <!-- Mixer controls container -->
  <!-- Image to trigger the div (now with id 'mixer-image') -->
 <img style="height: 5vh; margin-top: 0vh; margin-bottom: 1vh;" src="sound-controller.png" id="mixer-image" alt="Click to open volume controls" style="cursor: pointer;">
-<small style="margin-top: -2vh; color: rgba(0, 0, 0, 0.334); font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-top: -10px;">MIXER</small>
+
 
 <div class="mixer-container" style="display: none;">
-    <small style="margin-bottom: 4vh; color: rgb(74, 56, 59);">click again to close</small>
+    <small>click again to close</small>
+    <h3>Mixer</h3>
     <div class="volume-controls">
-        <ul style="padding: 0; margin-top: 2vh; margin: 0;">Match Left and Right Volumes</ul>
+            Match Left and Right Volumes
         <label>
             <input type="checkbox" id="link-volumes">
         </label>
@@ -45,7 +46,7 @@
         </div>
     </div>
     
-        <div class="loop-volume">
+    <div class="loop-volume">
         <label for="loop-volume">Looped Audio Volume:</label>
         <input type="range" id="loop-volume" min="0" max="1" step="0.01" value="0.3">
     </div>
