@@ -37,23 +37,23 @@
         </label>
     
         <div class="volume-slider">
-            <label for="left-volume">Left Volume:</label>
+            <div style="margin-bottom: -2vh;><label for="left-volume">Left Volume:</label></div>
             <input type="range" id="left-volume" min="0" max="1" step="0.01" value="0.5">
         </div>
     
         <div class="volume-slider">
-            <label for="right-volume">Right Volume:</label>
+            <div style="margin-bottom: -2vh;><label for="right-volume">Right Volume:</label></div>
             <input type="range" id="right-volume" min="0" max="1" step="0.01" value="0.5">
         </div>
     </div>
     
     <div class="loop-volume">
-        <label for="loop-volume">Looped Audio Volume:</label>
+        <div style="color: white; margin-bottom: -2vh;"><label for="loop-volume">Looped Audio Volume:</label></div>
         <input type="range" id="loop-volume" min="0" max="1" step="0.01" value="0.3">
     </div>
         
     <div class="reset-button">
-        <button id="reset-button">Reset to Default</button>
+        <button style="margin-bottom: -2vh; margin-top: -4vh; border: none; color: rgb(95, 0, 0); background-color: rgba(0, 0, 255, 0);" id="reset-button">Reset to Default</button>
     </div>
        <!-- Information -->
        <p style="color: black;" id="info"></p>
@@ -90,7 +90,7 @@
         <button id="stop-button" onclick="stopBinauralBeats()" style="display:none;">Stop</button>
 
         <!-- Share Button -->
-        <div style="margin-top: -2vh;">
+        <div style="margin-top: -1vh;">
             <img class="share-button" src="share.png" alt="">
          </div>
             
