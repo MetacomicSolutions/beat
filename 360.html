@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>360° Photo Viewer with A-Frame</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Room with Fallback Colors</title>
+  <!-- Include the A-Frame Library -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
-<body style="margin: 0; overflow: hidden; background-color: black; padding: 0;">
+<body style="margin: 0; overflow: hidden; background-color: black;">
+  <!-- A-Frame VR scene -->
+  <a-scene>
+    <!-- Floor with image and fallback color -->
+    <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" src="NightSky.jpg" color="#181818"></a-plane>
 
-    <a-scene>
-        <a-video src="hypnosis3.mp4" autoplay="true" loop="true" position="0 1.6 -3" scale="4 2 0" muted="true"></a-video>
-    </a-scene>
-    
+    <!-- Walls with images and fallback colors -->
+    <a-box position="0 2 -50" depth="1" height="4" width="100" src="NightSky.jpg" color="#1e1e1e"></a-box> <!-- Front wall -->
+    <a-box position="50 2 0" depth="100" height="4" width="1" src="NightSky.jpg" color="#1e1e1e"></a-box> <!-- Right wall -->
+    <a-box position="-50 2 0" depth="100" height="4" width="1" src="NightSky.jpg" color="#1e1e1e"></a-box> <!-- Left wall -->
+    <a-box position="0 2 50" depth="1" height="4" width="100" src="NightSky.jpg" color="#1e1e1e"></a-box> <!-- Back wall -->
+    <a-box position="0 4 0" depth="100" height="1" width="100" src="NightSky.jpg" color="#181818"></a-box> <!-- Ceiling -->
+
+    <!-- Image in front of the ball, slightly closer to the user -->
+    <a-image src="favicon.png" position="0 1.5 -5.5" width="4" height="3"></a-image>
+  </a-scene>
 </body>
 </html>
